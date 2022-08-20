@@ -23,9 +23,6 @@ router.post('/meetingInfo', function(req, res){
                 Name: junior.Meeting[0].Senior_id.Name,
                 Category: junior.Meeting[0].Senior_id.Category,
                 Start: junior.Meeting[0].Start,
-                End: junior.Meeting[0].End,
-                Company: junior.Meeting[0].Senior_id.Company,
-                Period: junior.Meeting[0].Senior_id.Profile.WorkPeriod,
                 Title: junior.Meeting[0].Senior_id.Profile.Title,
                 Score: score
             };
@@ -45,9 +42,6 @@ router.post('/meetingInfo', function(req, res){
                 Name: junior.Meeting[0].Senior_id.Name,
                 Category: junior.Meeting[0].Senior_id.Category,
                 Start: junior.Meeting[0].Start,
-                End: junior.Meeting[0].End,
-                Company: junior.Meeting[0].Senior_id.Company,
-                Period: junior.Meeting[0].Senior_id.Profile.WorkPeriod,
                 Title: junior.Meeting[0].Senior_id.Profile.Title,
                 Score: score
             };

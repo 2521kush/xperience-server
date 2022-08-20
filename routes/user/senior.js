@@ -25,7 +25,9 @@ router.get('/profile/:UserNo', function(req, res){
             WorkPeriod: senior.Profile.WorkPeriod,
             Introduction: senior.Profile.Introduction,
             Career: senior.Profile.Career,
-            Answer: senior.Profile.Answer
+            Answer: senior.Profile.Answer,
+            WorkTag: senior.Profile.WorkTag,
+            CharacterTag: senior.Profile.CharacterTag
         }
         res.send(seniorInfo);
     })
@@ -50,7 +52,6 @@ router.post('/meetingInfo', function(req, res){
                 Name: senior.Meeting[0].Junior_id.Name,
                 Category: senior.Meeting[0].Junior_id.Category,
                 Start: senior.Meeting[0].Start,
-                End: senior.Meeting[0].End,
                 Title: senior.Meeting[0].Junior_id.Profile.Title,
                 Score: score
             };
@@ -70,7 +71,6 @@ router.post('/meetingInfo', function(req, res){
                 Name: senior.Meeting[0].Junior_id.Name,
                 Category: senior.Meeting[0].Junior_id.Category,
                 Start: senior.Meeting[0].Start,
-                End: senior.Meeting[0].End,
                 Title: senior.Meeting[0].Junior_id.Profile.Title,
                 Score: score
             };
@@ -87,18 +87,18 @@ router.post('/search', function(req, res){
         res.send([]);
     }
     else if(Company){
-        Senior.find({Company:Company}, function(err, seniors){
+        Senior.find({Company:Company, Status: 1, Flag:1}, function(err, seniors){
             res.send(seniors);
-        }).select("Name Company UserNo Profile Category ConnectCnt")
+        }).select("Company Category Profile.WorkTag Profile.CharacterTag Profile.WorkPeriod UserNo ConnectCnt");
     }else{
-        Senior.find({Category:Category}, function(err, seniors){
+        Senior.find({Category:Category, Status: 1, Flag:1}, function(err, seniors){
             res.send(seniors);
-        }).select("Company  Name UserNo Profile Category ConnectCnt")
+        }).select("Company Category Profile.WorkTag Profile.CharacterTag Profile.WorkPeriod UserNo ConnectCnt")
     }
 })
 
 router.post('/profile', function(req, res){ 
-    const {UserNo, Title, Introduction, Answer, Career, Certification, AssignedWork, WorkTag, CharacterTag, WorkPeriod} = req.body;
+    const {UserNo, Title, AbleTime, Introduction, Answer, Career, Certification, AssignedWork, WorkTag, CharacterTag, WorkPeriod} = req.body;
     let profile = {
         UserNo: UserNo,
         Title: Title,
@@ -109,7 +109,8 @@ router.post('/profile', function(req, res){
         CharacterTag: CharacterTag,
         Career: Career,
         Answer: Answer,
-        WorkPeriod: WorkPeriod
+        WorkPeriod: WorkPeriod,
+        AbleTime: AbleTime
     }
     Senior.findOneAndUpdate(
         {UserNo: UserNo}, 
@@ -118,6 +119,17 @@ router.post('/profile', function(req, res){
             if (err) throw err;
             res.json({message: "프로필 수정이 완료되었습니다."})
         })
+})
+
+router.post('/abletime', function(req, res){ 
+    const {UserNo } = req.body;
+    Senior.findOne({UserNo:UserNo}, function(err, senior){
+        if(err) throw err;
+        res.json({
+            AbleTime: senior.AbleTime,
+            UserNo: senior.UserNo
+        });
+    })
 })
 
 module.exports = router;

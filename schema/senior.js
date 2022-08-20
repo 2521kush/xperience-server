@@ -18,6 +18,10 @@ const seniorSchema = new mongoose.Schema(
       Comment: String
     }],
     ConnectCnt: Number,
+    AbleTime: {
+      Weekdays: [Number], //0,1
+      Time: [String]
+    },
     Meeting: [{
       _id:false,
       Start: String,
