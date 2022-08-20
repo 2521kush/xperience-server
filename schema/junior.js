@@ -8,12 +8,27 @@ const juniorSchema = new mongoose.Schema(
     ID: String,
     Name: String,
     Password: String,
-    Status: Number,    
-    Wish: {
-        Company: [String],
-        Category: Number,   //직군
-        Hashtag: [String]
-    }
+    Status: Number,
+    Flag: Number,  
+    Company: [Number],
+    Category: Number,   //직군  
+    Feedback: [{
+      _id:false,
+      Score: Number,
+      Comment: String
+    }],
+    Profile: {
+      Title: String,
+      Content: String,
+      WorkTag: [Number], //1: 실무노하우, 2: 회사생활, 3: 부서별 업무, 4: 요구 능력  
+      CharacterTag: [Number],  //1:상냥한, 2:냉철한, 3:따뜻한, 4:차가운
+    },
+    Meeting: [{
+      _id:false,
+      Start: String,
+      End: String,
+      Senior_id: { type: mongoose.Schema.Types.ObjectId, ref: "Senior" },
+    }]
   },
   { versionKey: false, timestamps: true }
 );

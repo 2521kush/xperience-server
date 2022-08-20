@@ -4,6 +4,7 @@ var path = require('path');
 var logger = require('morgan');
 
 var registerRouter = require("./routes/register");
+var loginRouter = require("./routes/login");
 
 var seniorRouter = require("./routes/user/senior");
 var juniorRouter = require("./routes/user/junior");
@@ -24,6 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use("/api/register", registerRouter);
+app.use("/api/login", loginRouter);
 app.use("/api/senior", seniorRouter);
 app.use("/api/junior", juniorRouter);
 
