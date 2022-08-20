@@ -18,6 +18,7 @@ const senior_recommendation = (Senior_info, seniors)=>{
           Period: seniors[i].Profile.WorkPeriod,
           WorkTag: seniors[i].Profile.WorkTag,
           CharacterTag: seniors[i].Profile.CharacterTag,
+          Image: seniors[i].Image,
           ConnectCnt: seniors[i].ConnectCnt
           });
       }
@@ -53,6 +54,7 @@ const senior_recommendation = (Senior_info, seniors)=>{
             WorkTag: seniors[i].Profile.WorkTag,
             CharacterTag: seniors[i].Profile.CharacterTag,
             ConnectCnt: seniors[i].ConnectCnt,
+            Image: seniors[i].Image,
             Similarity: similarity
         });
       }
@@ -76,6 +78,7 @@ const junior_recommendation = (Junior_info, seniors)=>{
         Period: seniors[i].Profile.WorkPeriod,
         WorkTag: seniors[i].Profile.WorkTag,
         CharacterTag: seniors[i].Profile.CharacterTag,
+        Image: seniors[i].Image,
         ConnectCnt: seniors[i].ConnectCnt
         }); 
       }
@@ -113,6 +116,7 @@ const junior_recommendation = (Junior_info, seniors)=>{
           WorkTag: seniors[i].Profile.WorkTag,
           CharacterTag: seniors[i].Profile.CharacterTag,
           ConnectCnt: seniors[i].ConnectCnt,
+          Image: seniors[i].Image,
           Similarity: similarity
         });
       }
@@ -143,6 +147,7 @@ router.post("/", function(req, res){
                 Content: juniors[i].Profile.Content,
                 Register_Date: juniors[i].createdAt,
                 UserNo: juniors[i].UserNo,
+                Image: juniors[i].Image
               });
             }
           }

@@ -4,6 +4,7 @@ autoIncrement.initialize(mongoose.connection);
 
 const seniorSchema = new mongoose.Schema(
   {
+    Image: String,
     UserNo: Number,
     ID: String,
     Name: String,

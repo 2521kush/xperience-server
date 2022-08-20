@@ -4,6 +4,7 @@ autoIncrement.initialize(mongoose.connection);
 
 const juniorSchema = new mongoose.Schema(
   {
+    Image: String,
     UserNo: Number,
     ID: String,
     Name: String,
